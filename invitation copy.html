@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Omar & Menna</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#efdfcb;
+    overflow-x:hidden;
+}
+
+/* MUSIC BUTTON */
+
+#musicBtn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:9999;
+
+    display:none;
+
+    border:none;
+    background:#c6a27b;
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    font-family:Garamond, serif;
+    font-size:16px;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+/* ========================= */
+/* SECTION 1 */
+/* ========================= */
+
+.hero{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background:#efdfcb;
+}
+.desktop-bg{
+        display:block;
+    }
+
+.mobile-bg{
+        display:none;
+    }
+
+.hero-bg{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:110%;
+    height:auto;
+    transform:translate(-50%,-50%);
+    opacity:0;
+    animation:bgFade 1.5s ease forwards;
+}
+
+.card{
+    position:absolute;
+    left:50%;
+    top:65%;
+    width:min(90vw, 620px);
+    transform:translate(-50%, -50%);
+
+    animation:
+        cardRise 1.14s ease forwards;
+
+    z-index:20;
+}
+
+/* ========================= */
+/* SECTION 2 */
+/* ========================= */
+
+.location-section{
+    min-height:100vh;
+    display:flex;
+    background:#efdfcb;
+     margin:0;
+    padding:0;
+
+}
+
+.location-content{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:60px;
+    gap:30px; /* controls spacing */
+}
+
+.location-content h2{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:48px;
+    font-weight:400;
+    line-height:1.15;
+    margin:0;
+
+}
+
+.divider-image{
+    width:500px;
+    margin:0;
+}
+
+.location-icon{
+    width:500px;
+    margin:0;
+    padding:0;
+
+}
+
+
+.venue{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:32px;
+    line-height:1.3;
+    margin:0;
+    margin-top:-130px;
+
+}
+.location-btn{
+    background:#7a5631;
+    color:white;
+    text-decoration:none;
+    padding:14px 36px;
+    font-size:20px;
+    font-family:Garamond, serif;
+    border-radius:40px;
+    transition:.3s;
+}
+
+.location-btn:hover{
+    transform:translateY(-3px);
+}
+
+.pin-icon{
+    width:55px;
+    height:55px;
+}
+
+.location-image{
+    width:50%;
+}
+
+.location-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(.96);
+
+}
+/* ========================= */
+/* SAVE THE DATE */
+/* ========================= */
+
+.save-date{
+    min-height:50vh;  
+    margin:0;
+    padding:0;
+    background:#efdfcb;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:22px 20px;
+}
+
+.save-date-panel{
+    width:min(870px, 100%);
+    min-height:580px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding:42px 24px 56px;
+}
+
+.save-date h2{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:57px;
+    font-weight:400;
+
+    margin-bottom:20px;
+}
+
+/* .countdown{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+
+    margin:50px 0;
+} */
+
+.countdown{
+    display:grid;
+    grid-template-columns:repeat(3,70px);
+    justify-content:center;
+    gap:12px;
+}
+
+.countdown div{
+    width:70px;
+}
+
+.countdown span{
+    font-family:Garamond, serif;
+    font-weight:bold;
+    color:#70472e;
+    font-size:40px;
+    line-height:1;
+    margin-bottom:22px;
+}
+
+.countdown small{
+    font-family:Garamond;
+    color:#70472e;
+    font-weight:400;
+    letter-spacing:0;
+    font-size:20px;
+}
+
+.date-row,
+.time-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+
+    color:#8b1111;
+    font-family:Garamond, serif;
+    font-weight:bold;
+    font-size:0;
+    line-height:1;
+}
+
+.date-row{
+    margin:18px 0 24px;
+}
+
+.time-row{
+    margin:0;
+}
+
+/* .date-row::before,
+.time-row::before{
+    content:"";
+    width:36px;
+    height:36px;
+    flex:0 0 auto;
+    margin-right:14px;
+} */
+
+/* .date-row::before{
+    border:2px solid #b44935;
+    border-radius:4px;
+    background:
+        linear-gradient(#b44935,#b44935) 5px 8px / 22px 2px no-repeat,
+        linear-gradient(#b44935,#b44935) 10px 17px / 14px 2px no-repeat,
+        linear-gradient(#b44935,#b44935) 17px 17px / 2px 9px no-repeat;
+} */
+/* 
+.time-row::before{
+    border:2px solid #b44935;
+    border-radius:50%;
+    background:
+        linear-gradient(#b44935,#b44935) 16px 8px / 2px 11px no-repeat,
+        linear-gradient(35deg, transparent 0 47%, #b44935 48% 55%, transparent 56%) 17px 16px / 12px 12px no-repeat;
+} */
+
+.date-row span,
+.time-row span{
+    margin-left:0;
+}
+
+.date-row span{
+    font-size:42px;
+}
+
+.time-row span{
+    font-size:30px;
+}
+/* ========================= */
+/* SECTION 4 - PARKING */
+/* ========================= */
+
+.parking-section{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+    background:#efdfcb;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    margin:0;
+    padding:0;
+
+}
+
+.parking-bg{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+.parking-content{
+    position:relative;
+    z-index:2;
+
+    max-width:600px;
+}
+
+.parking-content h2{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:72px;
+    margin-bottom:20px;
+}
+
+.parking-divider{
+    width:250px;
+    margin-bottom:40px;
+}
+
+.parking-content p{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:26px;
+    line-height:1.6;
+
+    margin-bottom:50px;
+}
+
+/* GOLF CART */
+
+.golf-cart{
+    position:absolute;
+
+    bottom:40px;
+    left:-400px;
+
+    width:320px;
+
+    z-index:3;
+
+    animation:golfDrive 6s ease-out forwards;
+}
+
+.couple-section{
+    background:#efdfcb;
+    padding:80px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:60px;
+}
+
+.couple-image{
+    flex:1;
+}
+
+.couple-image img{
+    width:100%;
+    max-width:700px;
+    display:block;
+    border-radius:30px;
+}
+
+.couple-content{
+    flex:1;
+    text-align:center;
+}
+
+.couple-content h2{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:72px;
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.couple-divider{
+    width:250px;
+    margin-bottom:30px;
+}
+
+.couple-content p{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:26px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+@media(max-width:768px){
+
+    .hero{
+        height:100vh;
+        position:relative;
+        overflow:hidden;
+        margin:0;
+        padding:0;
+
+    }
+
+    .desktop-bg{
+        display:none;
+    }
+
+    .mobile-bg{
+        display:block;
+    }
+
+    .hero-bg{
+        position:absolute;
+
+        left:50%;
+        top:70%;
+
+        width:180%;
+
+
+        transform:translate(-50%,-50%);
+    }
+
+    .card{
+        position:absolute;
+
+        left:50%;
+        top:75%;
+
+        width:120vw;
+        max-width:1800px;
+        animation:cardRise 1.14s ease forwards;
+        z-index:20;
+    }
+
+
+    .location-section{
+        margin:0;
+        padding:0;
+        flex-direction:column;
+        min-height:auto;
+    }
+
+    .location-content{
+
+        width:100%;
+        min-height:auto;
+        padding:34px 24px 30px;
+        gap:14px;
+        justify-content:flex-start;
+    }
+
+    .location-image{
+        width:100%;
+        height:420px;
+        overflow:hidden;
+    }
+
+    .location-image img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center top;
+        display:block;
+    }
+
+    .location-content h2{
+        font-size:32px;
+        line-height:1.2;
+    }
+
+    .location-content .divider-image{
+        width:400px;
+        height:28px;
+        margin:0;
+        object-fit:cover;
+        object-position:center;
+    }
+
+    .location-icon{
+    width:150px;
+    margin:30px auto;
+    display:block;
+}
+    .venue{
+        font-size:21px;
+        line-height:1.35;
+        margin:0;
+
+    }
+
+    .location-btn{
+        font-size:25px;
+        /* padding:12px 30px; */
+        display:inline-flex;
+        align-items:center;
+        /* gap:2px;
+        margin-top:4px; */
+        justify-content:center; 
+
+    }
+    .save-date{
+        padding:18px 14px;
+        background:
+            linear-gradient(rgba(239,223,203,.52), rgba(239,223,203,.52)),
+            url("save-time-bg.png");
+        background-size:cover;
+        background-position:center;
+    }
+
+    .save-date-panel{
+        min-height:auto;
+        padding:34px 14px 42px;
+    }
+
+    .save-date h2{
+        font-size:48px;
+        margin-top:0;
+        margin-bottom:18px;
+        font-weight: 400;
+    }
+
+    .save-date .divider-image{
+        width:400px;
+        margin-top:-140px;
+    }
+
+    .countdown{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin:-90px 0 30px;
+    flex-wrap:nowrap;
+}
+
+    .countdown div{
+    width:70px;
+    text-align:center;   
+    background:none;
+    box-shadow:none;
+    border:none;
+    border-radius:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+    .countdown span{
+    font-size:54px;
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    color:#8B0000;
+    line-height:1;
+    margin-bottom:10px;
+}
+
+    .countdown small{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#8B0000;
+}
+.date-row,
+.time-row{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    margin:15px 0;
+}
+
+.calendar-icon{
+    position:absolute;
+    left:50%;
+    transform:translateX(-165px); /* adjust if needed */
+}
+.time-icon{
+    position:absolute;
+    left:50%;
+    transform:translateX(-120px); /* adjust if needed */
+}
+.calendar-icon{
+    width:95px;
+    height:88px;
+}
+
+.time-icon{
+    width:95px;
+    height:88px;
+}
+
+.date-row span,
+.time-row span{
+    text-align:center;
+}
+/* .date-row,
+.time-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:fit-content;
+} */
+
+.parking-section{
+    min-height:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+
+    padding:50px 22px 30px;
+
+    background:
+        linear-gradient(rgba(239,223,203,.42), rgba(239,223,203,.42)),
+        url("save-time-bg.png");
+
+    background-size:cover;
+    background-position:center;
+
+    margin:0;
+}
+
+    .parking-bg{
+        display:block;
+        
+    }
+
+    .parking-content{
+        width:100%;
+        max-width:100%;
+        padding:10px 18px 0;
+        /* background:rgba(249,234,216,.74); */
+    }
+
+    .parking-content h2{
+        font-size:40px;
+        line-height:1;
+        margin-bottom:18px;
+    }
+
+    .parking-divider{
+        width:489.8px;
+        max-width:100%;
+        height:15.3px;
+        object-fit:cover;
+        object-position:center;
+        margin-bottom:50px;
+    }
+
+    .parking-content p{
+        font-size:22px;
+        line-height:1.45;
+        margin-bottom:20px;
+    }
+
+    .golf-cart{
+        position:relative;
+        width:414.1px;
+        height:404.6px;
+        max-width:none;
+        object-fit:contain;
+        align-self:flex-end;
+        right:auto;
+        left:118px;
+        bottom:auto;
+        margin-top:-165px;
+        animation:none;
+        z-index:3;
+    }
+
+    .couple-section{
+        flex-direction:column;
+        padding:50px 20px;
+        gap:30px;
+        margin:0;
+        padding:0;
+    }
+
+    .couple-image img{
+        width:100%;
+        border-radius:14px;
+    }
+
+    .couple-content h2{
+        font-size:42px;
+    }
+    .couple-content p{
+        font-size:20px;
+        line-height:1.5;
+        margin-top:-110;
+
+    }
+
+}
+
+
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+@keyframes golfDrive{
+
+    from{
+        left:-400px;
+    }
+
+    to{
+        left:55%;
+    }
+
+}
+@keyframes bgFade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+@keyframes cardRise{
+    from{
+        opacity:0;
+        margin-top:80px;
+    }
+
+    to{
+        opacity:1;
+        margin-top:0;
+    }
+}
+@keyframes cardFloat{
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:-12px;
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+    <source src="open.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn">
+    ♪ Play Music
+</button>
+
+<!-- SECTION 1 -->
+
+<section class="hero">
+
+    <img
+        src="mosque-bg.png"
+        class="hero-bg mobile-bg"
+        alt="Mosque Background"
+    >
+
+    <img
+        src="mosque-bg-test.png"
+        class="hero-bg desktop-bg"
+        alt="Mosque Background"
+    >
+
+    <img
+        src="card-flower.png"
+        class="card"
+        alt="Omar and Menna Invitation"
+    >
+
+</section>
+
+<!-- SECTION 2 -->
+
+<section class="location-section">
+
+    <div class="location-content">
+
+        <h2>
+            Where Our Story<br>
+            Continues
+        </h2>
+
+        <img
+            src="divider.png"
+            class="divider-image"
+            alt=""
+        >
+
+        <img
+            src="mosque-pin.png"
+            class="location-icon"
+            alt=""
+        >
+
+        <p class="venue">
+            Saladin Citadel - Mosque<br>
+            Cairo
+        </p>
+
+        <a
+            href="https://maps.app.goo.gl/QTxBEU9CLJmhvfPF8"
+            target="_blank"
+            class="location-btn">
+
+            <!-- <img
+                src="location-pin.png"
+                class="pin-icon"
+                alt=""
+            > -->
+            Location
+
+        </a>
+
+    </div>
+
+    <div class="location-image">
+
+        <img
+            src="location-bg.png"
+            alt="Mosque"
+        >
+
+    </div>
+
+<!-- SECTION 3 -->
+</section>
+
+<section class="save-date">
+
+    <div class="save-date-panel">
+
+    <h2>SAVE THE DATE</h2>
+
+    <img src="divider.png" class="divider-image" alt="divider">
+
+    <div id="countdown" class="countdown">
+        <div>
+            <span id="days">00</span>
+            <small>Days</small>
+        </div>
+
+        <div>
+            <span id="hours">00</span>
+            <small>Hours</small>
+        </div>
+
+        <div>
+            <span id="minutes">00</span>
+            <small>Minutes</small>
+        </div>
+    </div>
+
+    <div class="date-row">
+            <img src="calendar-icon.png" alt="Calendar" class="calendar-icon">
+            <span>17.07.2026</span>
+    </div>
+
+    <div class="time-row">
+        <img src="time-icon.png" alt="Time" class="time-icon">
+        <span>5:00 PM</span>
+    </div>
+    </div>
+
+    </div>
+
+<!-- SECTION 4 -->
+</section>
+<section class="parking-section">
+
+    <!-- <img src="save-time-bg.png" class="parking-bg" alt=""> -->
+
+    <div class="parking-content">
+
+        <h2>PARKING</h2>
+
+        <img src="divider.png" class="parking-divider" alt="">
+
+        <p>
+            Guest parking will be available at the designated location.
+        </p>
+
+        <p>
+            A golf car will be available<br>
+            to take you to The<br>
+            Muhammad Ali Mosque
+        </p>
+
+    </div>
+
+    <img src="golf-car.png"
+         class="golf-cart"
+         alt="Golf Cart">
+
+</section>
+
+<section class="couple-section">
+
+    <div class="couple-content">
+
+        <p>
+            Two hearts, one journey, and a lifetime
+            of beautiful memories ahead.
+        </p>
+        
+    </div>
+
+    <div class="couple-image">
+        <img src="om.png" alt="Omar & Menna">
+    </div>
+
+
+</section>
+
+<script>
+
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+window.addEventListener("load", () => {
+
+    bgMusic.volume = 0.4;
+
+    bgMusic.play()
+        .catch(() => {
+
+            musicBtn.style.display = "block";
+
+        });
+
+});
+
+
+musicBtn.addEventListener("click", () => {
+
+    bgMusic.play();
+
+    musicBtn.innerHTML = "♪ Music Playing";
+
+    setTimeout(() => {
+
+        musicBtn.style.display = "none";
+
+    }, 1000);
+
+});
+
+/* COUNTDOWN CODE */
+
+const weddingDate = new Date("2026-07-17T17:00:00").getTime();
+
+function updateCountdown(){
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60))
+        / 1000
+    );
+    document.getElementById("days").textContent =String(days).padStart(2, "0");
+    document.getElementById("hours").textContent =String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent =String(minutes).padStart(2, "0");
+
+
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>

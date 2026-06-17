@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Omar & Menna</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#efdfcb;
+    overflow-x:hidden;
+}
+
+/* MUSIC BUTTON */
+
+#musicBtn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:9999;
+
+    display:none;
+
+    border:none;
+    background:#c6a27b;
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    font-family:Garamond, serif;
+    font-size:16px;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+/* ========================= */
+/* SECTION 1 */
+/* ========================= */
+
+.hero{
+    position:relative;
+    width:100%;
+    height:85vh;
+    overflow:hidden;
+    background:#efdfcb;
+}
+.hero-bg{
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    width:100%;
+    height:110%;
+
+    object-fit:cover;
+
+    transform:translate(-50%,-50%);
+
+    opacity:0;
+    animation:bgFade 1.5s ease forwards;
+}
+
+.mobile-bg{
+    display:none;
+}
+
+/* .hero-bg{
+    position:absolute;
+
+    top:30%;
+    left:35%;
+
+    width:130%;
+    height:auto;
+
+    transform:translate(-50%,-50%);
+
+    opacity:0;
+
+    animation:bgFade 1.5s ease forwards;
+} */
+.card{
+    position:absolute;
+    left:50%;
+    top:70%;
+
+    width:min(90vw, 500px);
+
+    transform:translate(-50%, -50%);
+    animation:
+    cardRise 1.7s ease forwards,
+
+}
+/* .card{
+    position:absolute;
+    left:50%;
+    top:80%;
+
+    width:min(70vw,320px);
+
+    opacity:0;
+
+    animation:
+        cardRise 1.7s ease forwards,
+        floatCard 4s ease-in-out infinite 2s;
+} */
+/* .card{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:min(92vw,520px);
+
+    opacity:0;
+
+    animation:
+        cardRise 1.7s ease forwards,
+        floatCard 4s ease-in-out infinite 2s;
+} */
+
+/* ========================= */
+/* SECTION 2 */
+/* ========================= */
+
+.location-section{
+    min-height:100vh;
+    display:flex;
+    background:#efdfcb;
+}
+
+.location-content{
+    width:50%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:60px;
+
+    gap:30px; /* controls spacing */
+}
+
+.location-content h2{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:48px;
+    font-weight:400;
+    line-height:1.15;
+    margin:0;
+
+}
+
+.divider-image{
+    width:500px;
+    margin:0;
+}
+
+.location-icon{
+    width:90px;
+    margin-bottom:25px;
+}
+
+
+.venue{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:32px;
+    line-height:1.3;
+    margin:0;
+    margin-top:-130px;
+
+}
+.location-btn{
+    background:#7a5631;
+    color:white;
+    text-decoration:none;
+    padding:14px 36px;
+    font-size:20px;
+    font-family:Garamond, serif;
+    border-radius:40px;
+    transition:.3s;
+}
+
+.location-btn:hover{
+    transform:translateY(-3px);
+}
+
+.pin-icon{
+    width:24px;
+    height:24px;
+}
+
+.location-image{
+    width:50%;
+}
+
+.location-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(.96);
+
+}
+/* ========================= */
+/* SAVE THE DATE */
+/* ========================= */
+
+.save-date{
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            rgba(239,223,203,.85),
+            rgba(239,223,203,.85)
+        ),
+        url("courtyard.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:80px 20px;
+}
+
+.save-date h2{
+    font-family:Garamond, serif;
+    color:#8b1111;
+    font-size:72px;
+    font-weight:400;
+
+    margin-bottom:20px;
+}
+
+.countdown{
+    display:flex;
+    gap:30px;
+
+    margin:50px 0;
+}
+
+.countdown div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.countdown span{
+    font-family:Garamond, serif;
+    font-weight:bold;
+    color:#8b1111;
+    font-size:72px;
+}
+
+.countdown small{
+    color:#8b1111;
+    font-weight:bold;
+    letter-spacing:2px;
+    font-size:14px;
+}
+
+.date-row,
+.time-row{
+    color:#8b1111;
+    font-family:Garamond, serif;
+    font-weight:bold;
+    font-size:42px;
+    margin:15px 0;
+}
+
+.date-row span,
+.time-row span{
+    margin-left:12px;
+}
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+@media(max-width:768px){
+
+    .hero{
+        height:100vh;
+        position:relative;
+        overflow:hidden;
+    }
+    
+
+    .hero-bg{
+        position:absolute;
+
+        left:50%;
+        top:70%;
+
+        width:180%;
+
+
+        transform:translate(-50%,-50%);
+    }
+
+    .mobile-bg{
+        display:block;
+    }
+
+    .desktop-bg{
+        display:none;
+    }
+
+    .card{
+        position:absolute;
+
+        left:50%;
+        top:75%;
+
+        width:120vw;
+        max-width:1800px;
+
+        z-index:20;
+    }
+
+
+    .location-section{
+        flex-direction:column;
+        min-height:auto;
+    }
+
+    .location-content{
+        width:100%;
+        min-height:auto;
+        padding:60px 25px;
+    }
+
+    .location-image{
+        width:100%;
+        height:auto;
+    }
+
+    .location-image img{
+        width:110%;
+        height:auto;
+        display:block;
+    }
+
+    .location-content h2{
+        font-size:36px;
+    }
+
+    .divider-image{
+        width:350px;
+        margin-top:-130px;
+
+    }
+
+    .venue{
+        font-size:24px;
+        margin-top:-180px;
+
+    }
+
+    .location-btn{
+        font-size:18px;
+        padding:14px 30px;
+    }
+        .save-date h2{
+        font-size:44px;
+        margin-top:-320px;
+    }
+    .countdown{
+        gap:15px;
+        margin-top:-95px;
+
+    }
+
+    .countdown span{
+        font-size:38px;
+    }
+
+    .countdown small{
+        font-size:10px;
+    }
+
+    .date-row,
+    .time-row{
+        font-size:28px;
+        
+    }
+
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+
+@keyframes bgFade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+@keyframes cardRise{
+
+    0%{
+        opacity:0;
+        transform:translate(-50%,200px) scale(.85);
+    }
+
+    70%{
+        opacity:1;
+        transform:translate(-50%,-10px) scale(1.03);
+    }
+
+    100%{
+        opacity:1;
+        transform:translate(-50%,0) scale(1);
+    }
+
+}
+
+@keyframes floatCard{
+
+    0%,100%{
+        transform:translate(-50%,0);
+    }
+
+    50%{
+        transform:translate(-50%,-8px);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+    <source src="open.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn">
+    ♪ Play Music
+</button>
+
+<!-- SECTION 1 -->
+
+<section class="hero">
+
+    <img
+        src="mosque-bg.png"
+        class="hero-bg mobile-bg"
+        alt="Mosque Background"
+    >
+
+    <img
+        src="mosque-bg-test.png"
+        class="hero-bg desktop-bg"
+        alt="Mosque Background"
+    >
+
+    <img
+        src="card-flower.png"
+        class="card"
+        alt="Omar and Menna Invitation"
+    >
+
+</section>
+
+<!-- SECTION 2 -->
+
+<section class="location-section">
+
+    <div class="location-content">
+
+        <h2>
+            Where Our Story<br>
+            Continues
+        </h2>
+
+        <img
+            src="divider.png"
+            class="divider-image"
+            alt=""
+        >
+
+        <img
+            src="location-icon.png"
+            class="location-icon"
+            alt=""
+        >
+
+        <p class="venue">
+            Saladin Citadel Mosque<br>
+            Cairo
+        </p>
+
+        <a
+            href="https://maps.app.goo.gl/QTxBEU9CLJmhvfPF8"
+            target="_blank"
+            class="location-btn">
+
+            <img
+                src="location-pin.png"
+                class="pin-icon"
+                alt=""
+            >
+            Location
+
+        </a>
+
+    </div>
+
+    <div class="location-image">
+
+        <img
+            src="location-bg.png"
+            alt="Mosque"
+        >
+
+    </div>
+<!-- SECTION 3 -->
+
+</section>
+
+<section class="save-date">
+
+    <h2>SAVE THE DATE</h2>
+
+    <img src="divider.png" class="divider-image" alt="divider">
+
+    <div id="countdown" class="countdown">
+        <div>
+            <span id="days">00</span>
+            <small>DAYS</small>
+        </div>
+
+        <div>
+            <span id="hours">00</span>
+            <small>HOURS</small>
+        </div>
+
+        <div>
+            <span id="minutes">00</span>
+            <small>MINS</small>
+        </div>
+
+        <div>
+            <span id="seconds">00</span>
+            <small>SECS</small>
+        </div>
+    </div>
+
+    <div class="date-row">
+        ✦ <span>17.07.2026</span>
+    </div>
+
+    <div class="time-row">
+        ✦  <span>5:00 PM</span>
+    </div>
+
+</section>
+
+<script>
+
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+window.addEventListener("load", () => {
+
+    bgMusic.volume = 0.4;
+
+    bgMusic.play()
+        .catch(() => {
+
+            musicBtn.style.display = "block";
+
+        });
+
+});
+
+musicBtn.addEventListener("click", () => {
+
+    bgMusic.play();
+
+    musicBtn.innerHTML = "♪ Music Playing";
+
+    setTimeout(() => {
+
+        musicBtn.style.display = "none";
+
+    }, 1000);
+
+});
+
+/* COUNTDOWN CODE */
+
+const weddingDate = new Date("2026-07-17T17:00:00").getTime();
+
+function updateCountdown(){
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60))
+        / 1000
+    );
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
